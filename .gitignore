@@ -1,5 +1,5 @@
+build
+build.log
 tmp
-build/
+._*
 .DS_Store
-.settings/
-.idea/
