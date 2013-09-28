@@ -6,8 +6,12 @@ var loadPlaylist = function(){
 		Ti.Media.createItem({
 			artist: 'Toro Y Moi',
 			title: 'All Alone',
-		});
-	]
+		}),
+		Ti.Media.createItem({
+			artist: 'Atlas Genius',
+			title: 'Centred On You (St. Lucia Remix)',
+		})
+	];
 };
 
 var init = function(win){
