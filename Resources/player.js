@@ -1,6 +1,15 @@
 (function() {
 Titanium.API.log("player");
 
+var loadPlaylist = function(){
+	var song = [
+		Ti.Media.createItem({
+			artist: 'Toro Y Moi',
+			title: 'All Alone',
+		});
+	]
+};
+
 var init = function(win){
 
 	var b1 = Ti.UI.createButton({
@@ -25,6 +34,8 @@ var init = function(win){
 		player.pause();
 	});
 	win.add(b2);
+
+	loadPlaylist();
 };
 
 exports.init = init;
