@@ -2,15 +2,19 @@
 Titanium.API.log("player");
 
 var loadPlaylist = function(){
-	var song = [
-		Ti.Media.createItem({
+	var songs = [
+		{
 			artist: 'Toro Y Moi',
 			title: 'All Alone',
-		}),
-		Ti.Media.createItem({
+			artworkFile:'/songs/Toro Y Moi - All Alone.jpg',
+			songFile:'/songs/Toro Y Moi - All Alone.mp3',
+		},
+		{
 			artist: 'Atlas Genius',
 			title: 'Centred On You (St. Lucia Remix)',
-		})
+			artworkFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).jpg',
+			songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
+		)
 	];
 };
 
@@ -38,6 +42,8 @@ var init = function(win){
 		player.pause();
 	});
 	win.add(b2);
+
+	var player = Ti.Media.createAudioPlayer({allowBackground: true});
 
 	loadPlaylist();
 };
