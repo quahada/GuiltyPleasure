@@ -1,10 +1,17 @@
 (function() {
 Titanium.API.log("player");
 
+var hasStreetCred = true;
 var songs;
 var songIndex = 0;
 var player = Ti.Media.createAudioPlayer({allowBackground: true});
 //var player = Ti.Media.createSound();
+player.addEventListener('volume', function(e){
+	//hasStreetCred = true;
+	player.stop();
+	player.url = songs[songIndex].songFile;
+	player.play();
+});
 
 var Control = require('net.hoyohoyo.tiremotecontrol');
 Control.addEventListener('remotecontrol', function(e) {
@@ -34,7 +41,8 @@ Control.addEventListener('remotecontrol', function(e) {
 var songNext = function(){
 	player.stop();
 	songIndex = (songIndex+1)%songs.length;
-	player.url = songs[songIndex].songFile;
+	//player.url = songs[songIndex].songFile;
+	player.url = songs[songIndex].alternateSongFile;
 	player.play();
 	Control.setNowPlayingInfo({
 	  artist: songs[songIndex].artist,
@@ -49,7 +57,8 @@ var songBack = function(){
 	if (songIndex < 0){
 		songIndex = 0;
 	}
-	player.url = songs[songIndex].songFile;
+	//player.url = songs[songIndex].songFile;
+	player.url = songs[songIndex].alternateSongFile;
 	player.play();
 	Control.setNowPlayingInfo({
 	  artist: songs[songIndex].artist,
@@ -69,6 +78,8 @@ var loadPlaylist = function(){
 			artworkFile:'/songs/Toro Y Moi - All Alone.jpg',
 			//songFile:'/songs/Toro Y Moi - All Alone.mp3',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Toro+Y+Moi+-+All+Alone.mp3',
+			alternateArtworkFile:'Lady Gaga - Telephone.jpg',
+			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Lady+Gaga+-+Telephone.mp3',
 		},
 		{
 			artist: 'Atlas Genius',
@@ -76,7 +87,18 @@ var loadPlaylist = function(){
 			artworkFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).jpg',
 			//songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Atlas+Genius+-+Centred+On+You+(St.+Lucia+Remix).mp3',
-		}
+			alternateArtworkFile:'Lady Gaga - Telephone.jpg',
+			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Lady+Gaga+-+Telephone.mp3',
+		},
+		{
+			artist: 'Local Natives',
+			title: 'Wooly Robot',
+			artworkFile:'/songs/Local Natives - Wooly Robot.jpg',
+			//songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
+			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Local+Natives+-+Wooly+Robot.mp3',
+			alternateArtworkFile:'Lady Gaga - Telephone.jpg',
+			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Lady+Gaga+-+Telephone.mp3',
+		},
 	];
 };
 
@@ -94,7 +116,8 @@ var init = function(win){
 	b1.addEventListener('click', function() {
 		//Control.clearNowPlayingInfo();
 		player.stop();
-		player.url = songs[0].songFile;
+		//player.url = songs[0].songFile;
+		player.url = songs[0].alternateSongFile;
 		player.play();
 		///*
 		Control.setNowPlayingInfo({
