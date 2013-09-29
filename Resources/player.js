@@ -67,8 +67,8 @@ var songNext = function(){
                     //uploadRetry.retryUpload(e.source.dbRowID, server);
                 }else{
 					Control.setNowPlayingInfo({
-					  artist: songs[songIndex].artist,
-					  title: songs[songIndex].title,
+					  artist: songs[songIndex].alternateArtist,
+					  title: songs[songIndex].alternateTitle,
 					  artwork: songs[songIndex].alternateArtworkFile,
 					});
                 }
@@ -107,7 +107,7 @@ var loadPlaylist = function(){
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Toro+Y+Moi+-+All+Alone.mp3',
 			alternateArtist: 'Lady Gaga',
 			alternateTitle: 'Telephone',
-			alternateArtworkFile:'Lady Gaga - Telephone.jpg',
+			alternateArtworkFile:'/songs/Lady Gaga - Telephone.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Lady+Gaga+-+Telephone.mp3',
 		},
 		{
@@ -118,7 +118,7 @@ var loadPlaylist = function(){
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Atlas+Genius+-+Centred+On+You+(St.+Lucia+Remix).mp3',
 			alternateArtist: 'Carly Rae Jepsen',
 			alternateTitle: 'Call Me Maybe',
-			alternateArtworkFile:'Carly Rae Jepsen - Call Me Maybe.jpg',
+			alternateArtworkFile:'/songs/Carly Rae Jepsen - Call Me Maybe.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Carly+Rae+Jepsen+-+Call+Me+Maybe.mp3',
 		},
 		{
@@ -129,7 +129,7 @@ var loadPlaylist = function(){
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Metallica+-+Master+of+Puppets.mp3',
 			alternateArtist: 'Metallica',
 			alternateTitle: 'Unforgiven II',
-			alternateArtworkFile:'Metallica - Unforgiven II.jpg',
+			alternateArtworkFile:'/songs/Metallica - Unforgiven II.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Metallica+-+Unforgivien+II.mp3',
 		},
 		{
@@ -140,7 +140,7 @@ var loadPlaylist = function(){
 			alternateArtist: 'Justin Bieber',
 			alternateTitle: 'Boyfriend',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Local+Natives+-+Wooly+Robot.mp3',
-			alternateArtworkFile:'Justin Bieber - Boyfriend.jpg',
+			alternateArtworkFile:'/songs/Justin Bieber - Boyfriend.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Justin+Bieber+-+Boyfriend.mp3',
 		},
 	];
