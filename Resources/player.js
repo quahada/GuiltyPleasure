@@ -87,8 +87,8 @@ var loadPlaylist = function(){
 			artworkFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).jpg',
 			//songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Atlas+Genius+-+Centred+On+You+(St.+Lucia+Remix).mp3',
-			alternateArtworkFile:'Lady Gaga - Telephone.jpg',
-			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Lady+Gaga+-+Telephone.mp3',
+			alternateArtworkFile:'Carly Rae Jepsen - Call Me Maybe.jpg',
+			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Carly+Rae+Jepsen+-+Call+Me+Maybe.mp3',
 		},
 		{
 			artist: 'Local Natives',
@@ -96,8 +96,8 @@ var loadPlaylist = function(){
 			artworkFile:'/songs/Local Natives - Wooly Robot.jpg',
 			//songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Local+Natives+-+Wooly+Robot.mp3',
-			alternateArtworkFile:'Lady Gaga - Telephone.jpg',
-			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Lady+Gaga+-+Telephone.mp3',
+			alternateArtworkFile:'Justin Bieber - Boyfriend.jpg',
+			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Justin+Bieber+-+Boyfriend.mp3',
 		},
 	];
 };
