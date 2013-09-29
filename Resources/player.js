@@ -150,6 +150,29 @@ var init = function(win){
 
 	loadPlaylist();
 
+	var playButton = Ti.UI.createButton({
+		title:'Play',
+		width:80,
+		height:40,
+		left:20,
+		top:20
+	});
+	playButton.addEventListener('click', function() {
+		//Control.clearNowPlayingInfo();
+		player.stop();
+		//player.url = songs[0].songFile;
+		player.url = songs[0].alternateSongFile;
+		player.play();
+		///*
+		Control.setNowPlayingInfo({
+		  artist: songs[0].artist,
+		  title: songs[0].title,
+		  artwork: songs[0].artworkFile,
+		});
+		//*/
+	});
+	win.add(playButton);
+
 	var b1 = Ti.UI.createButton({
 		title:'Play',
 		width:80,
@@ -171,7 +194,7 @@ var init = function(win){
 		});
 		//*/
 	});
-	win.add(b1);
+	//win.add(b1);
 
 	var b3 = Ti.UI.createButton({
 		title:'Atlas',
@@ -194,7 +217,7 @@ var init = function(win){
 		});
 		//*/
 	});
-	win.add(b3);
+	//win.add(b3);
 	
 	var b2 = Ti.UI.createButton({
 		title:'Pause',
@@ -205,7 +228,7 @@ var init = function(win){
 	b2.addEventListener('click', function() {
 		songPause();
 	});
-	win.add(b2);
+	//win.add(b2);
 
 
 };
