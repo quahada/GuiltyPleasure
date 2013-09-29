@@ -27,6 +27,9 @@
 			<orientation>Ti.UI.LANDSCAPE_LEFT</orientation>
 			<orientation>Ti.UI.LANDSCAPE_RIGHT</orientation>
 		</orientations>
+        <backgroundModes>
+            <mode>audio</mode>
+        </backgroundModes>
 	</iphone>
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
 	</android>
@@ -40,6 +43,7 @@
 		<theme>default</theme>
 	</mobileweb>
 	<modules>
+        <module platform="iphone">net.hoyohoyo.tiremotecontrol</module>
 	</modules>
 	<deployment-targets>
 		<target device="ipad">true</target>
