@@ -2,6 +2,7 @@
 Titanium.UI.setBackgroundColor('#000');
 
 Titanium.Media.audioSessionMode = Ti.Media.AUDIO_SESSION_MODE_PLAYBACK;
+Ti.App.idleTimerDisabled = true;
 
 // create tab group
 var tabGroup = Titanium.UI.createTabGroup();
