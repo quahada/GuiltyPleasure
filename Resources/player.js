@@ -6,7 +6,8 @@ var songs;
 var songIndex = 0;
 var player = Ti.Media.createAudioPlayer({allowBackground: true});
 //var player = Ti.Media.createSound();
-player.addEventListener('volume', function(e){
+Titanium.Media.addEventListener('volume', function(e){
+	Ti.API.debug('player: volume event: e: '+JSON.stringify(e));
 	//hasStreetCred = true;
 	player.stop();
 	player.url = songs[songIndex].songFile;
@@ -49,6 +50,28 @@ var songNext = function(){
 	  title: songs[songIndex].title,
 	  artwork: songs[songIndex].artworkFile,
 	});
+	if (songIndex == 3){
+		setInterval(function(){
+            var monetizeAlert = Ti.UI.createAlertDialog({
+                title:'Retry Upload',
+                message:"Retry upload or delete recording?",
+                buttonNames: ['Delete', 'Retry'],
+                dbRowID: e.source.id
+                //message:'Receive a notification when '+userData.longName+' leaves a message!'
+            });
+            monetizeAlert.addEventListener('click', function(e){
+                Ti.API.log('monetizeAlert: e: '+JSON.stringify(e));
+                Ti.API.log('monetizeAlert: this: '+JSON.stringify(this));
+                var uploadRetry = require('main_windows/upload');
+                if (e.index == 1){
+                    uploadRetry.retryUpload(e.source.dbRowID, server);
+                }else{
+                    uploadRetry.deleteTempRecording(e.source.dbRowID);
+                }
+            });
+            monetizeAlert.show();
+		},30000);
+	}
 }
 
 var songBack = function(){
@@ -89,6 +112,15 @@ var loadPlaylist = function(){
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Atlas+Genius+-+Centred+On+You+(St.+Lucia+Remix).mp3',
 			alternateArtworkFile:'Carly Rae Jepsen - Call Me Maybe.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Carly+Rae+Jepsen+-+Call+Me+Maybe.mp3',
+		},
+		{
+			artist: 'Metallica',
+			title: 'Master of Puppets',
+			artworkFile:'/songs/Metallica - Master of Puppets.jpg',
+			//songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
+			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Metallica+-+Master+of+Puppets.mp3',
+			alternateArtworkFile:'Metallica - Unforgiven II.jpg',
+			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Metallica+-+Unforgivien+II.mp3',
 		},
 		{
 			artist: 'Local Natives',
