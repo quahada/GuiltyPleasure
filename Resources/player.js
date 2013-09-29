@@ -2,6 +2,7 @@
 Titanium.API.log("player");
 
 var songs;
+var songIndex = 0;
 var player = Ti.Media.createAudioPlayer({allowBackground: true});
 //var player = Ti.Media.createSound();
 
@@ -10,19 +11,55 @@ Control.addEventListener('remotecontrol', function(e) {
   Ti.API.debug('player: remote control event: e: '+JSON.stringify(e));
   switch (e.subtype) {
     case Control.REMOTE_CONTROL_PLAY:
+      player.play();
       break;
     case Control.REMOTE_CONTROL_PAUSE:
+      songPause();
       break;
     case Control.REMOTE_CONTROL_STOP:
+      player.stop();
       break;
     case Control.REMOTE_CONTROL_PLAY_PAUSE:
+      songPause();
       break;
     case Control.REMOTE_CONTROL_PREV:
+      songBack();
       break;
     case Control.REMOTE_CONTROL_NEXT:
+      songNext();
       break;
   }
 });
+
+var songNext = function(){
+	player.stop();
+	songIndex = (songIndex+1)%songs.length;
+	player.url = songs[songIndex].songFile;
+	player.play();
+	Control.setNowPlayingInfo({
+	  artist: songs[songIndex].artist,
+	  title: songs[songIndex].title,
+	  artwork: songs[songIndex].artworkFile,
+	});
+}
+
+var songBack = function(){
+	player.stop();
+	songIndex = (songIndex-1)%songs.length;
+	if (songIndex < 0){
+		songIndex = 0;
+	}
+	player.url = songs[songIndex].songFile;
+	player.play();
+	Control.setNowPlayingInfo({
+	  artist: songs[songIndex].artist,
+	  title: songs[songIndex].title,
+	  artwork: songs[songIndex].artworkFile,
+	});
+}
+var songPause = function(){
+	player.pause();
+}
 
 var loadPlaylist = function(){
 	songs = [
@@ -55,7 +92,7 @@ var init = function(win){
 		top:20
 	});
 	b1.addEventListener('click', function() {
-		Control.clearNowPlayingInfo();
+		//Control.clearNowPlayingInfo();
 		player.stop();
 		player.url = songs[0].songFile;
 		player.play();
@@ -64,7 +101,6 @@ var init = function(win){
 		  artist: songs[0].artist,
 		  title: songs[0].title,
 		  artwork: songs[0].artworkFile,
-		  //albumTitle: null
 		});
 		//*/
 	});
@@ -78,7 +114,7 @@ var init = function(win){
 		top:80
 	});
 	b3.addEventListener('click', function() {
-		Control.clearNowPlayingInfo();
+		//Control.clearNowPlayingInfo();
 		player.stop();
 		player.url = songs[1].songFile;
 		player.play();
@@ -100,7 +136,7 @@ var init = function(win){
 		top:20
 	});
 	b2.addEventListener('click', function() {
-		player.pause();
+		songPause();
 	});
 	win.add(b2);
 
