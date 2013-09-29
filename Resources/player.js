@@ -7,7 +7,7 @@ var player = Ti.Media.createAudioPlayer({allowBackground: true});
 
 var Control = require('net.hoyohoyo.tiremotecontrol');
 Control.addEventListener('remotecontrol', function(e) {
-  Ti.API.debug('player: remote control event was fired!!!!');
+  Ti.API.debug('player: remote control event: e: '+JSON.stringify(e));
   switch (e.subtype) {
     case Control.REMOTE_CONTROL_PLAY:
       break;
@@ -62,8 +62,9 @@ var init = function(win){
 		///*
 		Control.setNowPlayingInfo({
 		  artist: songs[0].artist,
-		  title: 'Happy Birthday to You',
-		  albumTitle: 'unknown'
+		  title: songs[0].title,
+		  artwork: songs[0].artworkFile,
+		  //albumTitle: null
 		});
 		//*/
 	});
@@ -84,8 +85,9 @@ var init = function(win){
 		///*
 		Control.setNowPlayingInfo({
 		  artist: songs[1].artist,
-		  title: 'Happy Birthday to You',
-		  albumTitle: 'unknown'
+		  title: songs[1].title,
+		  artwork: songs[1].artworkFile,
+		  //albumTitle: null
 		});
 		//*/
 	});
