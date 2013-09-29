@@ -39,12 +39,25 @@ Control.addEventListener('remotecontrol', function(e) {
   }
 });
 
+var navWin;
+var playerView = Ti.UI.createView({});
+var albumArtView = Ti.UI.createImageView({
+	width: 300,
+	center: 50,
+	top:-15,
+	clickName:'photo'
+});
+playerView.add(albumArtView);
+
+var playerWin = Ti.UI.createWindow({});
+
 var songNext = function(){
 	player.stop();
 	songIndex = (songIndex+1)%songs.length;
 	//player.url = songs[songIndex].songFile;
 	player.url = songs[songIndex].alternateSongFile;
 	player.play();
+	albumArtView.image = songs[songIndex].artworkFile;
 	Control.setNowPlayingInfo({
 	  artist: songs[songIndex].artist,
 	  title: songs[songIndex].title,
@@ -85,8 +98,9 @@ var songBack = function(){
 		songIndex = 0;
 	}
 	//player.url = songs[songIndex].songFile;
-	player.url = songs[songIndex].alternateSongFile;
+	player.url = songs[songIndex].artworkFile;
 	player.play();
+	albumArtView.image = songs[songIndex].artworkFile;
 	Control.setNowPlayingInfo({
 	  artist: songs[songIndex].artist,
 	  title: songs[songIndex].title,
@@ -149,16 +163,23 @@ var loadPlaylist = function(){
 var init = function(win){
 
 	loadPlaylist();
+	navWin = Ti.UI.iOS.createNavigationWindow({window:win});
 
 	var playButton = Ti.UI.createButton({
-		title:'Play',
-		width:80,
-		height:40,
-		left:20,
-		top:20
+		//title:'Play',
+		//width:80,
+		//height:40,
+		width:120,
+		height:135,
+		backgroundImage:'/images/Black_triangle.png',
+		//left:20,
+		//top:20
 	});
 	playButton.addEventListener('click', function() {
 		//Control.clearNowPlayingInfo();
+		songIndex = 0;
+		albumArtView.image = songs[0].artworkFile;
+		//navWin.openWindow(playerWin);
 		player.stop();
 		//player.url = songs[0].songFile;
 		player.url = songs[0].alternateSongFile;
