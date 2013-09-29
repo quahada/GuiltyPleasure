@@ -51,26 +51,30 @@ var songNext = function(){
 	  artwork: songs[songIndex].artworkFile,
 	});
 	if (songIndex == 3){
-		setInterval(function(){
+		setTimeout(function(){
             var monetizeAlert = Ti.UI.createAlertDialog({
-                title:'Retry Upload',
-                message:"Retry upload or delete recording?",
-                buttonNames: ['Delete', 'Retry'],
-                dbRowID: e.source.id
+                title:'Pay Us or ELSE!!!!',
+                //message:"Retry upload or delete recording?",
+                buttonNames: ['Fuck That', 'OK'],
+                //dbRowID: e.source.id
                 //message:'Receive a notification when '+userData.longName+' leaves a message!'
             });
             monetizeAlert.addEventListener('click', function(e){
                 Ti.API.log('monetizeAlert: e: '+JSON.stringify(e));
                 Ti.API.log('monetizeAlert: this: '+JSON.stringify(this));
-                var uploadRetry = require('main_windows/upload');
+                //var uploadRetry = require('main_windows/upload');
                 if (e.index == 1){
-                    uploadRetry.retryUpload(e.source.dbRowID, server);
+                    //uploadRetry.retryUpload(e.source.dbRowID, server);
                 }else{
-                    uploadRetry.deleteTempRecording(e.source.dbRowID);
+					Control.setNowPlayingInfo({
+					  artist: songs[songIndex].artist,
+					  title: songs[songIndex].title,
+					  artwork: songs[songIndex].alternateArtworkFile,
+					});
                 }
             });
             monetizeAlert.show();
-		},30000);
+		},15000);
 	}
 }
 
@@ -101,6 +105,8 @@ var loadPlaylist = function(){
 			artworkFile:'/songs/Toro Y Moi - All Alone.jpg',
 			//songFile:'/songs/Toro Y Moi - All Alone.mp3',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Toro+Y+Moi+-+All+Alone.mp3',
+			alternateArtist: 'Lady Gaga',
+			alternateTitle: 'Telephone',
 			alternateArtworkFile:'Lady Gaga - Telephone.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Lady+Gaga+-+Telephone.mp3',
 		},
@@ -110,6 +116,8 @@ var loadPlaylist = function(){
 			artworkFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).jpg',
 			//songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Atlas+Genius+-+Centred+On+You+(St.+Lucia+Remix).mp3',
+			alternateArtist: 'Carly Rae Jepsen',
+			alternateTitle: 'Call Me Maybe',
 			alternateArtworkFile:'Carly Rae Jepsen - Call Me Maybe.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Carly+Rae+Jepsen+-+Call+Me+Maybe.mp3',
 		},
@@ -119,6 +127,8 @@ var loadPlaylist = function(){
 			artworkFile:'/songs/Metallica - Master of Puppets.jpg',
 			//songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Metallica+-+Master+of+Puppets.mp3',
+			alternateArtist: 'Metallica',
+			alternateTitle: 'Unforgiven II',
 			alternateArtworkFile:'Metallica - Unforgiven II.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Metallica+-+Unforgivien+II.mp3',
 		},
@@ -127,6 +137,8 @@ var loadPlaylist = function(){
 			title: 'Wooly Robot',
 			artworkFile:'/songs/Local Natives - Wooly Robot.jpg',
 			//songFile:'/songs/Atlas Genius - Centred On You (St. Lucia Remix).mp3',
+			alternateArtist: 'Justin Bieber',
+			alternateTitle: 'Boyfriend',
 			songFile:'https://s3.amazonaws.com/titaniumtestfiles/Local+Natives+-+Wooly+Robot.mp3',
 			alternateArtworkFile:'Justin Bieber - Boyfriend.jpg',
 			alternateSongFile:'https://s3.amazonaws.com/titaniumtestfiles/Justin+Bieber+-+Boyfriend.mp3',
